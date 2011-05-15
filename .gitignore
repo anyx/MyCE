@@ -2,3 +2,5 @@
 .idea
 cache
 log
+.project
+.buildpath
