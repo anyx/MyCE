@@ -1,0 +1,22 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+all:
+  sf_admin_dash:
+    categories:
+      Crosswords:
+        items:
+          Crossword:
+            url:    crossword
+          Category:
+            url:    crossword_category
+          Words:
+            url:    word
+      Users:
+        items:
+          sfGuardUser:
+            url:    sf_guard_user
+          sfGuardPermission:
+            url:    sf_guard_permission
+            

@@ -1,0 +1,34 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+all:
+  melody:
+    create_user: true               # to create a user for all melodies 
+    facebook:
+      key: 114949468588006
+      secret: 15266750e6ae656f3fab05a807c405f5
+      callback: @oauth_facebook
+      scope: [email]                #optionnal - http://developers.facebook.com/docs/authentication/permissions
+                                    # needed to create an user based on his email_address
+      user:
+        username:                   # the name of a field of sfGuardUser
+          call: me                  # api call
+          path: user.object.email   # path could be user.object.email for example to retrieve the right inforamtion
+          prefix: Facebook_
+        first_name:
+          call: me
+          path: first_name
+        last_name: 
+          call: me
+          path: last_name
+        email_address:               
+          call: me                  
+          path: email               
+          key: true                 # it's a key to retrieve user from other services based on this information
+                                    # if no field is a key all are keys by default.        
+
+#    facebook_plus:                  # you can manage more than one config for a service
+#      provider: facebook            # to manage permissions for example            
+#      ...
+#    google:

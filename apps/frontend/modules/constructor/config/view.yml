@@ -1,0 +1,3 @@
+indexSuccess:
+  stylesheets: [sunny/jquery-ui-1.8.11.custom.css,constructor.css]
+  javascripts: [jquery-1.5.1.min.js,jquery-ui-1.8.11.custom.min.js, common.js, point.js, abstract_word_view.js, word_view.js, word_form.js, abstract_crossword_area.js, crossword_area.js, crossword.js, init-constructor.js]

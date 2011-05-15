@@ -1,0 +1,70 @@
+.d-crossword-area {
+	width: 500px;
+	height: 500px;
+/*	background: #037ed5; */
+	position: relative;
+}
+.grid, .grid td {
+    border: 1px solid #777;
+    border-collapse: collapse;
+}
+.grid td div {
+    width: 19px;
+    height: 19px;
+}
+
+.right-panel {
+    float: right;
+    position: relative;
+}
+.word-preview {
+    float: right;
+    width: 200px;
+    height: 280px;
+    border: 1px solid #CCC;
+    margin: 0px 30px;
+}
+.word-view {
+    cursor: move;
+}
+.grid .word-table td {
+    border-color: #000;
+}
+.word-table, .word-table td  {
+    border: solid 2px #000;
+    border-collapse: collapse;
+}
+.word-table td {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+}
+.droppable-hover {
+    border: 1px solid #00c;
+}
+.droppable-active {
+    border: 1px solid #c00;
+}
+
+/* Words Panel
+----------------------------------------------- */
+.words-panel {
+	border: 1px solid #ccc;
+	padding: 10px;
+	width: 210px;
+}
+
+.form-item INPUT, .form-item TEXTAREA {
+	width: 200px;
+	border: 1px solid #ccc;
+	padding: 2px;
+}
+
+.error {
+	color: #c00;
+	position: absolute;
+	left: 0px; 
+}
+/* Save 
+----------------------------------------------- */

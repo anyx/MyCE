@@ -1,0 +1,22 @@
+generator:
+  class: mpRealtyAdminDoctrineGenerator
+  param:
+    model_class:           Word
+    theme:                 mpReality
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          word
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
+      show:    ~

@@ -1,0 +1,74 @@
+Token:
+  Token_1:
+    name: facebook
+    token_key: 114949468588006|2.qdzSA839edi2SA3KILkrfA__.3600.1303502400.1-100001039525338|Kypp6yfXEbXoKkoM1IDz04M2nsw
+    token_secret: null
+    User: sfGuardUser_1
+    expire: '1303502440'
+    params:
+      expires: '3444'
+    identifier: '100001039525338'
+    status: access
+    o_auth_version: '2'
+    created_at: '2011-04-23 01:03:20'
+    updated_at: '2011-04-23 01:03:20'
+sfGuardUserPermission:
+  sfGuardUserPermission_1_1:
+    User: sfGuardUser_1
+    Permission: sfGuardPermission_1
+    created_at: '2011-04-23 02:35:08'
+    updated_at: '2011-04-23 02:35:08'
+sfGuardPermission:
+  sfGuardPermission_1:
+    name: admin
+    description: Администратор
+    created_at: '2011-04-23 02:35:08'
+    updated_at: '2011-04-23 02:35:08'
+sfGuardUser:
+  sfGuardUser_1:
+    first_name: Александр
+    last_name: Клименков
+    email_address: alx.devel@gmail.com
+    username: anyx
+    algorithm: sha1
+    salt: null
+    password: null
+    is_active: true
+    is_super_admin: true
+    last_login: '2011-04-23 01:03:20'
+    created_at: '2011-04-23 01:03:20'
+    updated_at: '2011-04-23 02:46:11'
+sfGuardRememberKey:
+  sfGuardRememberKey_1:
+    User: sfGuardUser_1
+    remember_key: hlvyl978lgggog08s8wo0o888wkckks
+    ip_address: 127.0.0.1
+    created_at: '2011-04-23 01:03:20'
+    updated_at: '2011-04-23 01:03:20'
+Word:
+  Word_1:
+    word: привет
+    definition: 'Первое слово в проекте'
+    Crossword: Crossword_1
+    horisontal: true
+    x: '2'
+    y: '2'
+    created_at: '2011-04-23 01:01:15'
+    updated_at: '2011-04-23 01:01:15'
+  Word_2:
+    word: мир
+    definition: 'Второе слово в проекте'
+    Crossword: Crossword_1
+    horisontal: false
+    x: '4'
+    y: '1'
+    created_at: '2011-04-23 01:01:15'
+    updated_at: '2011-04-23 01:01:15'
+Crossword:
+  Crossword_1:
+    title: first
+    description: 'first description'
+    is_public: true
+    is_activated: false
+    created_at: '2011-04-23 01:01:15'
+    updated_at: '2011-04-23 01:01:15'
