@@ -40,5 +40,46 @@ class UserAnswerTable extends Doctrine_Table
     		->where( 'crossword_id = ?', $crossword_id )
     		->andWhere( 'user_id = ?', $user_id )
     		->fetchOne();
+    }
+    
+    /**
+     * 
+     * Enter description here ...
+     * @param int $crossword_id
+     */
+    public function getCrosswordAnswers( $crossword_id ) {
+
+    	if ( empty( $crossword_id ) ) {
+    		throw new InvalidArgumentException( 'Crossword id is missing' );
+    	}
+    	
+    	$query = $this->getQueryObject();
+    	
+    	$answers = $query
+    		->where( 'crossword_id = ?', $crossword_id )
+    		->execute();
+
+    	if ( $answers->count() <= 0 ) {
+    		return false;
+    	}
+    	
+    	$result = array();
+    	
+    	foreach ( $answers as $answer ) {
+    		
+    		if ( !array_key_exists( $answer->getCrosswordId(), $result ) ) {
+    			$result[$answer->getCrosswordId()] = array(	
+    				'right' => 0,
+    				'wrong'	=> 0
+    			);
+    		}
+    		
+    		if ( $answer->isCorrect() ) {
+    			$result[$answer->getCrosswordId()]['right']++;
+    		} else {
+    			$result[$answer->getCrosswordId()]['wrong']++;
+    		}
+    	}
+   		return $result;
     } 
 }

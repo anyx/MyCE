@@ -1,8 +1,8 @@
 CREATE TABLE answer (id BIGINT AUTO_INCREMENT, word_id BIGINT NOT NULL, text VARCHAR(255), answer_id BIGINT NOT NULL, INDEX word_id_idx (word_id), INDEX answer_id_idx (answer_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE crossword_fz_tag (id BIGINT, tag_id BIGINT, PRIMARY KEY(id, tag_id)) ENGINE = INNODB;
-CREATE TABLE crossword (id BIGINT AUTO_INCREMENT, title VARCHAR(255), description TEXT NOT NULL, is_public TINYINT(1) DEFAULT '1' NOT NULL, is_activated TINYINT(1) DEFAULT '0' NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE crossword (id BIGINT AUTO_INCREMENT, title VARCHAR(255), description TEXT NOT NULL, is_public TINYINT(1) DEFAULT '1' NOT NULL, is_activated TINYINT(1) DEFAULT '0' NOT NULL, user_id BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE token (id BIGINT AUTO_INCREMENT, name VARCHAR(127), token_key LONGTEXT, token_secret LONGTEXT, user_id BIGINT, expire BIGINT, params LONGTEXT, identifier VARCHAR(255), status VARCHAR(127), o_auth_version SMALLINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE user_answer (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, crossword_id BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX crossword_id_idx (crossword_id), INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE user_answer (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, crossword_id BIGINT NOT NULL, is_correct TINYINT(1) DEFAULT '0' NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX crossword_id_idx (crossword_id), INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE word (id BIGINT AUTO_INCREMENT, word VARCHAR(255), definition VARCHAR(255), crossword_id BIGINT NOT NULL, horisontal TINYINT(1) DEFAULT '0' NOT NULL, x BIGINT NOT NULL, y BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX crossword_id_idx (crossword_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE fz_tag (id BIGINT AUTO_INCREMENT, name VARCHAR(255) NOT NULL UNIQUE, weight BIGINT DEFAULT 0 NOT NULL, INDEX tag_weight_idx (weight), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_forgot_password (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, unique_key VARCHAR(255), expires_at DATETIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
@@ -17,6 +17,7 @@ ALTER TABLE answer ADD CONSTRAINT answer_word_id_word_id FOREIGN KEY (word_id) R
 ALTER TABLE answer ADD CONSTRAINT answer_answer_id_user_answer_id FOREIGN KEY (answer_id) REFERENCES user_answer(id) ON DELETE CASCADE;
 ALTER TABLE crossword_fz_tag ADD CONSTRAINT crossword_fz_tag_tag_id_fz_tag_id FOREIGN KEY (tag_id) REFERENCES fz_tag(id) ON DELETE CASCADE;
 ALTER TABLE crossword_fz_tag ADD CONSTRAINT crossword_fz_tag_id_crossword_id FOREIGN KEY (id) REFERENCES crossword(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE crossword ADD CONSTRAINT crossword_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
 ALTER TABLE token ADD CONSTRAINT token_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE user_answer ADD CONSTRAINT user_answer_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
 ALTER TABLE user_answer ADD CONSTRAINT user_answer_crossword_id_crossword_id FOREIGN KEY (crossword_id) REFERENCES crossword(id) ON DELETE CASCADE;

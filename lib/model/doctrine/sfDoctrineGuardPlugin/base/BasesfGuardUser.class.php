@@ -22,6 +22,7 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $Tokens
+ * @property Doctrine_Collection $Crossword
  * @property Doctrine_Collection $UserAnswer
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
@@ -41,6 +42,7 @@
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getTokens()                Returns the current record's "Tokens" collection
+ * @method Doctrine_Collection   getCrossword()             Returns the current record's "Crossword" collection
  * @method Doctrine_Collection   getUserAnswer()            Returns the current record's "UserAnswer" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
@@ -59,6 +61,7 @@
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setTokens()                Sets the current record's "Tokens" collection
+ * @method sfGuardUser           setCrossword()             Sets the current record's "Crossword" collection
  * @method sfGuardUser           setUserAnswer()            Sets the current record's "UserAnswer" collection
  * 
  * @package    crosswords
@@ -156,6 +159,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('Token as Tokens', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('Crossword', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

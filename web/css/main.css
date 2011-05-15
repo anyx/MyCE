@@ -95,12 +95,16 @@ ul.menu a:hover {
 
 /** Head
 --------------------------------*/
-h1.site-name {
+h1.site-name, h1.site-name a {
+	display: block;
 	color: #ffc320;
 	text-shadow: #333 1px 1px 2px, #fff 0 0 40px;
 	position: absolute;
-	top: 80px;
+	text-decoration: none;
+	top: 40px;
 	left: 20px;
+	width: 220px;
+	border: none;
 }
 /** Content
 --------------------------------*/
@@ -172,7 +176,6 @@ P {
 	text-decoration: none;
 	color: #2c4b61;
 }
-
 .list-services li a:hover {
 	background: #0069b3;
 	background: linear-gradient(top, #97d4ff, #bfe1f1, #97d4ff);
@@ -180,7 +183,6 @@ P {
 	background: -webkit-gradient(linear, left top, left bottom, from(#007eb8), to(#009de6) );
 	border-color: #3a92d0;
 }
-
 .service IMG {
 	display: block;
 	margin: 15px auto 0px auto; 
@@ -188,4 +190,13 @@ P {
 .list-services .service-name {
 	display: block;
 	text-align: center;
+}
+
+/** Profile
+--------------------------------*/
+.right-count {
+	color: #0c0;
+}
+.wrong-count {
+	color: #c00;
 }

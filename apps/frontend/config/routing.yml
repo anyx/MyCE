@@ -54,21 +54,17 @@ login:
   url: /login
   param:   { module: auth, action: index }
 
-auth_oauth:
-  url: /auth/:service
-  param:   { module: auth, action: connect }
+oauth_twitter:
+  url: /auth/success/twitter
+  param:   { module: auth, action: success, service: twitter }
 
 oauth_facebook:
   url: /auth/success/facebook
   param:   { module: auth, action: success, service: facebook }
 
-auth_google:
-  url: /auth/google
-  param:   { module: auth, action: google }
-
-auth_success:
-  url: /auth/success
-  param:   { module: auth, action: success }
+auth_oauth:
+  url: /auth/:service
+  param:   { module: auth, action: connect }
 
 logout:
   url: /logout

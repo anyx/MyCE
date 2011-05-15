@@ -10,16 +10,9 @@
  */
 class crosswordActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
-  {
-  	 $this->crosswords = Doctrine_Core::getTable('Crossword')
-      ->createQuery('a')
-      ->execute();
-  }
 
   public function executeTag( sfWebRequest $request ) {
   	
- 
   	$this->tag = $this->getRoute()->getObject();
   	
   	$this->forward404Unless( $this->tag );

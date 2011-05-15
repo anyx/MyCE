@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+    <meta name="google-site-verification" content="We-QTqaenrmA_G6_Mxv9FeR_gw1kxzC6dy34yJkiQY4" />
   </head>
   <body>
   	<div class="b-layout">
@@ -50,7 +51,7 @@
 	  		<input type="text" name="serach" value="search..."/>
 	  	</div>
 	
-		<h1 class="site-name"><?=__( 'My Crossword' )?></h1>
+		<h1 class="site-name"><a href="<?=url_for( 'homepage' )?>"><?=__( 'My Crossword' )?></a></h1>
 	  	
 	  	<div class="menu-block">
 	  		<ul class="menu">

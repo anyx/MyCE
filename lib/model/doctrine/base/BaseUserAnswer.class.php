@@ -7,17 +7,20 @@
  * 
  * @property integer $user_id
  * @property integer $crossword_id
+ * @property boolean $is_correct
  * @property Crossword $Crossword
  * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $Answer
  * 
  * @method integer             getUserId()       Returns the current record's "user_id" value
  * @method integer             getCrosswordId()  Returns the current record's "crossword_id" value
+ * @method boolean             getIsCorrect()    Returns the current record's "is_correct" value
  * @method Crossword           getCrossword()    Returns the current record's "Crossword" value
  * @method sfGuardUser         getSfGuardUser()  Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getAnswer()       Returns the current record's "Answer" collection
  * @method UserAnswer          setUserId()       Sets the current record's "user_id" value
  * @method UserAnswer          setCrosswordId()  Sets the current record's "crossword_id" value
+ * @method UserAnswer          setIsCorrect()    Sets the current record's "is_correct" value
  * @method UserAnswer          setCrossword()    Sets the current record's "Crossword" value
  * @method UserAnswer          setSfGuardUser()  Sets the current record's "sfGuardUser" value
  * @method UserAnswer          setAnswer()       Sets the current record's "Answer" collection
@@ -39,6 +42,11 @@ abstract class BaseUserAnswer extends sfDoctrineRecord
         $this->hasColumn('crossword_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             ));
+        $this->hasColumn('is_correct', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
              ));
     }
 

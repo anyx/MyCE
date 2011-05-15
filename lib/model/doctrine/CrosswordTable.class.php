@@ -38,4 +38,20 @@ class CrosswordTable extends Doctrine_Table
     public function getByTag( fzTag $tag ) {
     	return $tag->getCrosswords();
     }
+    
+    /**
+     * 
+     * @param int $userId
+     */
+    public function getUserCrosswords( $userId ) {
+    	
+    	if ( empty( $userId ) || !is_numeric( $userId ) ) {
+    		throw new InvalidArgumentException( 'User id is missing' );
+    	}
+    	
+    	$query = $this->getQueryObject();
+    	return $query
+    			->where( 'user_id = ?', $userId )
+    			->execute();
+    }
 }

@@ -5,6 +5,9 @@ Crossword:
     description:  { type: string(4000), notnull: true }
     is_public:    { type: boolean, notnull: true, default: 1 }
     is_activated: { type: boolean, notnull: true, default: 0 }
+    user_id:      { type: integer, notnull: true }
+  relations:
+    sfGuardUser: { onDelete: CASCADE, local: user_id, foreign: id }
 
 Word:
   actAs: { Timestampable: ~ }
@@ -32,6 +35,7 @@ UserAnswer:
   columns:
     user_id: { type: integer, notnull: true }
     crossword_id: { type: integer, notnull: true }
+    is_correct: { type: boolean, notnull: true, default: false }
   relations:
     Crossword: { onDelete: CASCADE, local: crossword_id, foreign: id }
     sfGuardUser: { onDelete: CASCADE, local: user_id, foreign: id } 

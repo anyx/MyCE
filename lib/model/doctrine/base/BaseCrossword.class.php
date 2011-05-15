@@ -9,6 +9,8 @@
  * @property string $description
  * @property boolean $is_public
  * @property boolean $is_activated
+ * @property integer $user_id
+ * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $CrosswordWords
  * @property Doctrine_Collection $UserAnswer
  * 
@@ -16,12 +18,16 @@
  * @method string              getDescription()    Returns the current record's "description" value
  * @method boolean             getIsPublic()       Returns the current record's "is_public" value
  * @method boolean             getIsActivated()    Returns the current record's "is_activated" value
+ * @method integer             getUserId()         Returns the current record's "user_id" value
+ * @method sfGuardUser         getSfGuardUser()    Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getCrosswordWords() Returns the current record's "CrosswordWords" collection
  * @method Doctrine_Collection getUserAnswer()     Returns the current record's "UserAnswer" collection
  * @method Crossword           setTitle()          Sets the current record's "title" value
  * @method Crossword           setDescription()    Sets the current record's "description" value
  * @method Crossword           setIsPublic()       Sets the current record's "is_public" value
  * @method Crossword           setIsActivated()    Sets the current record's "is_activated" value
+ * @method Crossword           setUserId()         Sets the current record's "user_id" value
+ * @method Crossword           setSfGuardUser()    Sets the current record's "sfGuardUser" value
  * @method Crossword           setCrosswordWords() Sets the current record's "CrosswordWords" collection
  * @method Crossword           setUserAnswer()     Sets the current record's "UserAnswer" collection
  * 
@@ -54,11 +60,20 @@ abstract class BaseCrossword extends sfDoctrineRecord
              'notnull' => true,
              'default' => 0,
              ));
+        $this->hasColumn('user_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('sfGuardUser', array(
+             'local' => 'user_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
         $this->hasMany('Word as CrosswordWords', array(
              'local' => 'id',
              'foreign' => 'crossword_id'));

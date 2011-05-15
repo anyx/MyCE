@@ -15,6 +15,8 @@ class profileActions extends sfActions
   * @param sfRequest $request A request object
   */
   public function executeIndex( sfWebRequest $request ) {
-  	$this->user = $this->getUser();
+  	$this->user = $this->getUser()->getGuardUser();
+
+  	$this->createdCrosswords = Doctrine::getTable( 'Crossword')->getUserCrosswords( $this->user->getId() );
   }
 }

@@ -48,13 +48,24 @@ class authActions extends sfActions {
   public function executeSuccess( sfWebRequest $request ) {
 
 	$service = $request->getParameter( 'service' );
-  	
+
     $user = $this->getUser()->getMelody( $service )->getMe();
+
+    switch ( $service ) {
+    	case 'facebook'	: 
+    		$userLink = $user->link;
+    		break;
+    	case 'twitter'	:
+    		$userLink = 'http://twitter.com/#!/' . $user->screen_name;
+    		break;
+    	default:
+    		$userLink = '';
+    }
     
     $this->getUser()->setAttribute( 'auth_service' , $service );
-    $this->getUser()->setAttribute( 'service_profile_link' , $user->link );
+    $this->getUser()->setAttribute( 'service_profile_link' , $userLink );
     
-    $this->redirect( 'homepage' );
+  	$this->redirect( 'homepage' );
   }
   
   /**

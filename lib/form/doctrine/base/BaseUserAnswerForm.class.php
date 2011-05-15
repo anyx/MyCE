@@ -18,6 +18,7 @@ abstract class BaseUserAnswerForm extends BaseFormDoctrine
       'id'           => new sfWidgetFormInputHidden(),
       'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => false)),
       'crossword_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Crossword'), 'add_empty' => false)),
+      'is_correct'   => new sfWidgetFormInputCheckbox(),
       'created_at'   => new sfWidgetFormDateTime(),
       'updated_at'   => new sfWidgetFormDateTime(),
     ));
@@ -26,6 +27,7 @@ abstract class BaseUserAnswerForm extends BaseFormDoctrine
       'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'))),
       'crossword_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Crossword'))),
+      'is_correct'   => new sfValidatorBoolean(array('required' => false)),
       'created_at'   => new sfValidatorDateTime(),
       'updated_at'   => new sfValidatorDateTime(),
     ));

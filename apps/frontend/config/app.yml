@@ -26,9 +26,22 @@ all:
           call: me                  
           path: email               
           key: true                 # it's a key to retrieve user from other services based on this information
-                                    # if no field is a key all are keys by default.        
-
-#    facebook_plus:                  # you can manage more than one config for a service
-#      provider: facebook            # to manage permissions for example            
-#      ...
-#    google:
+                                    # if no field is a key all are keys by default.
+    twitter:                                        
+      key: 7EpGiK7VCRTnLzEoELme2w
+      secret: rM3NuRHI2v8I9AKKOgIZnMTxwsYck4VyhmlLe7ip8
+      callback: @oauth_twitter
+      user:
+        username:                   # the name of a field of sfGuardUser
+          call: me                  # api call
+          path: 273068881   # path could be user.object.email for example to retrieve the right inforamtion
+          prefix: Twitter_
+        first_name:
+          call: me
+          path: name
+        last_name: 
+          call: me
+          path: last_name
+        email_address:               
+          call: me                  
+          path: id_str

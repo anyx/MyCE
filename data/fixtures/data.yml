@@ -1,17 +1,61 @@
+UserAnswer:
+  UserAnswer_1:
+    sfGuardUser: sfGuardUser_2
+    Crossword: Crossword_1
+    is_correct: false
+    created_at: '2011-05-16 02:13:40'
+    updated_at: '2011-05-16 02:13:40'
+  UserAnswer_2:
+    sfGuardUser: sfGuardUser_1
+    Crossword: Crossword_1
+    is_correct: true
+    created_at: '2011-05-16 02:14:08'
+    updated_at: '2011-05-16 02:14:08'
+Answer:
+  Answer_1:
+    Word: Word_2
+    text: add
+    UserAnswer: UserAnswer_1
+  Answer_2:
+    Word: Word_1
+    text: asdsad
+    UserAnswer: UserAnswer_1
+  Answer_5:
+    Word: Word_2
+    text: мир
+    UserAnswer: UserAnswer_2
+  Answer_6:
+    Word: Word_1
+    text: привет
+    UserAnswer: UserAnswer_2
 Token:
-  Token_1:
+  Token_4:
+    name: twitter
+    token_key: 273068881-aj8fm08pr0TxRYtKCEnRLRUJ22monaUHTFzoGp0
+    token_secret: fIaA5szzMlMeGhnKq7iDvnbfSL1DVbfU0Hg1pH5A
+    User: sfGuardUser_2
+    expire: null
+    params:
+      user_id: '273068881'
+      screen_name: zryaneskazhev
+    identifier: '273068881'
+    status: access
+    o_auth_version: '1'
+    created_at: '2011-05-16 02:04:18'
+    updated_at: '2011-05-16 02:04:18'
+  Token_5:
     name: facebook
-    token_key: 114949468588006|2.qdzSA839edi2SA3KILkrfA__.3600.1303502400.1-100001039525338|Kypp6yfXEbXoKkoM1IDz04M2nsw
+    token_key: 114949468588006|2.dJK7ymV3rWeczbW1itThYg__.3600.1305496800.1-100001039525338|2bkOycWWZRHkVLfBayHaurPTSzU
     token_secret: null
     User: sfGuardUser_1
-    expire: '1303502440'
+    expire: '1305496824'
     params:
-      expires: '3444'
+      expires: '6390'
     identifier: '100001039525338'
     status: access
     o_auth_version: '2'
-    created_at: '2011-04-23 01:03:20'
-    updated_at: '2011-04-23 01:03:20'
+    created_at: '2011-05-16 02:13:57'
+    updated_at: '2011-05-16 02:13:57'
 sfGuardUserPermission:
   sfGuardUserPermission_1_1:
     User: sfGuardUser_1
@@ -35,16 +79,35 @@ sfGuardUser:
     password: null
     is_active: true
     is_super_admin: true
-    last_login: '2011-04-23 01:03:20'
+    last_login: '2011-05-16 02:13:57'
     created_at: '2011-04-23 01:03:20'
-    updated_at: '2011-04-23 02:46:11'
+    updated_at: '2011-05-16 02:13:57'
+  sfGuardUser_2:
+    first_name: 'Семен Зранескажев'
+    last_name: null
+    email_address: '273068881'
+    username: ''
+    algorithm: sha1
+    salt: null
+    password: null
+    is_active: true
+    is_super_admin: false
+    last_login: '2011-05-16 02:04:18'
+    created_at: '2011-05-16 01:25:31'
+    updated_at: '2011-05-16 02:04:18'
 sfGuardRememberKey:
-  sfGuardRememberKey_1:
-    User: sfGuardUser_1
-    remember_key: hlvyl978lgggog08s8wo0o888wkckks
+  sfGuardRememberKey_4:
+    User: sfGuardUser_2
+    remember_key: q7h1gkmvw1wk88ss4884sk0kcwskok0
     ip_address: 127.0.0.1
-    created_at: '2011-04-23 01:03:20'
-    updated_at: '2011-04-23 01:03:20'
+    created_at: '2011-05-16 02:04:18'
+    updated_at: '2011-05-16 02:04:18'
+  sfGuardRememberKey_5:
+    User: sfGuardUser_1
+    remember_key: tko7b2khpn484og8csko4gk484wc4s8
+    ip_address: 127.0.0.1
+    created_at: '2011-05-16 02:13:57'
+    updated_at: '2011-05-16 02:13:57'
 Word:
   Word_1:
     word: привет
@@ -70,5 +133,6 @@ Crossword:
     description: 'first description'
     is_public: true
     is_activated: false
+    sfGuardUser: sfGuardUser_1
     created_at: '2011-04-23 01:01:15'
     updated_at: '2011-04-23 01:01:15'
