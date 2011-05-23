@@ -39,7 +39,7 @@ function CrosswordArea( options ) {
 	 */
 	function initDroppable() {
 		
-		$('div.word-preview').droppable({
+		$( 'div.word-preview' ).droppable({
 			accept		: '.word-view',
 			drop: function( event, ui ) {
 				ui.draggable.eq(0)
@@ -59,15 +59,17 @@ function CrosswordArea( options ) {
 			drop: function( event, ui ) {
 				var word_view = ui.draggable.get(0);
 	
-				var x = Math.ceil( ( event.clientX - crossword_start_point.left ) / _this.getCellSize() ) - 1;
-				var y = Math.ceil( ( event.clientY - crossword_start_point.top ) / _this.getCellSize() ) - 1;
+				var x = Math.ceil( ( event.pageX - crossword_start_point.left ) / _this.getCellSize() ) - 1;
+				var y = Math.ceil( ( event.pageY - crossword_start_point.top ) / _this.getCellSize() ) - 1;
 	
 				var active_cell = _this.getCell( x, y );
 	
 				var word_item = word_view.getWordItem();
-	
+
 				if ( active_cell != false && _this.getCrossword().canAddItem( word_item ) ) {
-	
+					
+					console.log( 'add', word_item.getData() );
+					
 					_this.getCrossword().addItem( word_item );
 					active_cell = active_cell.parent().get(0);
 	
@@ -79,7 +81,7 @@ function CrosswordArea( options ) {
 					$( word_view ).appendTo( $('div.word-preview') ).css({
 						'left'		: '0px',
 						'top'		: '0px',
-						'position' 	: 'static'
+						'position' 	: 'relative'
 					});
 				}
 				

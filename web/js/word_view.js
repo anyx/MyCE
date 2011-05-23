@@ -64,16 +64,17 @@ function WordView( word_item ) {
 			   if ( $( this ).parent().get(0) == crossword_area.getElement() ) {
 				   crossword_area.getCrossword().removeItem( _this.getWordItem().getText() );
 			   }
+			   ui.helper.appendTo( crossword_area.getElement() ).css( 'position', 'absolute' );
 		   },
 		   drag: function( event, ui ) {
-			   var x = Math.ceil( ( event.clientX - crossword_start_point.left ) / cell_size ) - 1;
-			   var y = Math.ceil( ( event.clientY - crossword_start_point.top ) / cell_size ) - 1;
+			   var x = Math.ceil( ( event.pageX - crossword_start_point.left ) / cell_size ) - 1;
+			   var y = Math.ceil( ( event.pageY - crossword_start_point.top ) / cell_size ) - 1; 
 			   
 			   word_item.setStartPoint({
 				   x : x,
 				   y : y	   
 			   });
-			   
+
 			   if ( !crossword_area.getCrossword().canAddItem( word_item ) ) {
 				   setBorderColor( '#c00' );
 			   } else {
@@ -87,13 +88,13 @@ function WordView( word_item ) {
 				   left = - ( context.word_preview_point.left - ( x * cell_size + crossword_start_point.left ) );
 				   top = y * cell_size;
 			   }
-			   
+	
 			   ui.position.left = left;
 			   ui.position.top = top;
 		   }
 	   });
    }
-   
+
    /**
     * 
     * @param color

@@ -22,11 +22,11 @@
   <tbody>
     <?php foreach ($crosswords as $crossword): ?>
     <tr>
-      <td><a href="<?php echo url_for('crossword/show?id='.$crossword->getId()) ?>"><?php echo $crossword->getTitle() ?></a></td>
+      <td><a href="<?php echo url_for('@constructor_resolve?crossword_id='.$crossword->getId()) ?>" title="<?=__( 'Resolve' )?>"><?php echo $crossword->getTitle() ?></a></td>
       <td><?php echo $crossword->getDescription() ?></td>
       <td><?php echo $crossword->getCreatedAt() ?></td>
       <td class="text-center">
-      	<?if( array_key_exists( $crossword->getId(), $solutions ) ): ?>
+      	<?if( is_array( $solutions ) && array_key_exists( $crossword->getId(), $solutions ) ): ?>
       		<span class="right-count"><?=$solutions[$crossword->getId()]['right']?></span> / <span class="wrong-count"><?=$solutions[$crossword->getId()]['wrong']?></span>
       	<?else:?>
       		<?=__( 'Solutions not found' )?> 	 

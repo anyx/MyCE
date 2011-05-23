@@ -10,9 +10,9 @@
     <meta name="google-site-verification" content="We-QTqaenrmA_G6_Mxv9FeR_gw1kxzC6dy34yJkiQY4" />
   </head>
   <body>
-  	<div class="b-layout">
-  	
-	  	<div class="user-panel">
+  <div class="top-panel-wrapper">	
+	<div class="top-panel b-layout">
+		<div class="user-panel">
 	  		<?php
 	  		$user = sfContext::getInstance()->getUser();
 	  		?>
@@ -45,22 +45,29 @@
 	  			</span>
 	  			
 	  		<?endif;?>
-	  	</div>
-	  	
-	  	<div class="search-panel">
+		</div>
+		
+		<div class="search-panel">
 	  		<input type="text" name="serach" value="search..."/>
 	  	</div>
-	
-		<h1 class="site-name"><a href="<?=url_for( 'homepage' )?>"><?=__( 'My Crossword' )?></a></h1>
 	  	
-	  	<div class="menu-block">
-	  		<ul class="menu">
-	  			<li><a href="#">Create crossword</a></li>
-	  			<li><a href="#">Most Popular</a></li>
-	  			<li><a href="#">About</a></li>
-	  		</ul>
-	  	</div>
-	  	<div style="clear:both"></div>
+  	</div>
+  </div>
+  	
+  	<div class="b-layout">
+	  	
+	  	<div class="heading">
+			<h1 class="site-name"><a href="<?=url_for( 'homepage' )?>"><?=__( 'My Crossword' )?></a></h1>
+		  	
+		  	<div class="menu-block">
+		  		<ul class="menu">
+		  			<li><a href="#">Create crossword</a></li>
+		  			<li><a href="#">Most Popular</a></li>
+		  			<li><a href="#">About</a></li>
+		  		</ul>
+		  	</div>
+		</div>
+			  	
 	  	<div class="content-block">
 
 	  	<h2 class="title"><?include_slot('title')?></h2>

@@ -5,10 +5,6 @@
       <td><?php echo $crossword->getId() ?></td>
     </tr>
     <tr>
-      <th>Category:</th>
-      <td><?php echo $crossword->getCategoryId() ?></td>
-    </tr>
-    <tr>
       <th>Title:</th>
       <td><?php echo $crossword->getTitle() ?></td>
     </tr>

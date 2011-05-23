@@ -22,7 +22,6 @@ class constructorActions extends sfActions {
 	$this->forward404Unless($this->crossword, 'Object crossword does not exist');
 	
 	$this->word_items = $this->crossword->getWords();
-
   }
   
   /**

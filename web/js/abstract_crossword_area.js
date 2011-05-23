@@ -2,8 +2,11 @@ function AbstractCrosswordArea( options ) {
 	
 	options = $.extend({
 				element		: null,
-				cell_size	: 20,
-				grid_size	: 10
+				cell_size	: 25,
+				grid_size   : {
+					width   : 25,
+					height  : 25
+				}
 	}, options); 
 	
 	/**

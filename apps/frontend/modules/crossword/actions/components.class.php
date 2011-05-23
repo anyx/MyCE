@@ -19,7 +19,7 @@ class crosswordComponents extends sfComponents {
     		$crosswordIds = array();
     		
     		foreach ( $this->crosswords as $crossword ) {
-    			$crosswordIds = $crossword->getId();
+    			$crosswordIds[] = $crossword->getId();
     		}
     		
 	    	$this->solutions = Doctrine_Core::getTable( 'UserAnswer' )->getCrosswordAnswers( $crosswordIds );

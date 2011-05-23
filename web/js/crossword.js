@@ -60,6 +60,20 @@ function WordItem( data, position ) {
 	/**
 	 * 
 	 */
+	this.getDefinition = function() {
+		return data.definition;
+	};
+
+	/**
+	 * 
+	 */
+	this.setDefinition = function( definition ) {
+		data.definition = definition;
+	};
+	
+	/**
+	 * 
+	 */
 	this.isHorizontal = function() {
 		return position.direction == 'horizontal';
 	};
@@ -99,11 +113,18 @@ function WordItem( data, position ) {
 	/**
 	 * 
 	 */
+	this.setText = function( text ) { 
+		data.text = text;
+	};
+	
+	/**
+	 * 
+	 */
 	this.getData = function() {
 		return {
-			id			: data.id,
-			word		: data.text,
-			definition	: data.definition,
+			id			: this.getId(),
+			word		: this.getText(),
+			definition	: this.getDefinition(),
 			direction	: this.getDirection(),
 			x			: position.x,
 			y			: position.y
@@ -120,7 +141,7 @@ function WordItem( data, position ) {
 	/**
 	 * @return { x: x, y: y };
 	 */
-	this.getEndPoint = function(){
+	this.getEndPoint = function() {
 		
 		if ( this.isHorizontal() ) {
 			return new Point( position.x + parseInt( this.getLength() - 1 ), position.y );
@@ -453,6 +474,9 @@ function Crossword() {
 			block_end.x++;
 
 			var found_items = this.getItemsInBlock( parallel_items, block_start, block_end );
+
+			//console.log( 'block', block_start, block_end, 'item', found_items[0].getData() );
+
 			if ( found_items.length > 0 ) {
 				return false;
 			}

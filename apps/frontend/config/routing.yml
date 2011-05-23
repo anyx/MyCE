@@ -7,12 +7,12 @@ homepage:
   param: { module: front, action: index }
 
 constructor:
-  url:     /constructor/:crossword_id
+  url:     /constructor/:id
   class:   sfDoctrineRoute
   options: { model: Crossword, type: object }
   param:   { module: constructor, action: index }
   requirements:
-    crossword_id: \d+
+    id: \d+
     sf_method: [get]
 
 constructor_save:

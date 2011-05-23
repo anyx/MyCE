@@ -11,7 +11,6 @@ Words not found!
 <?php end_slot(); ?>
 
 <div class="tags">
-
 <?$tags = $crossword->getTags();?>
 <?if( count( $tags ) > 0 ):?>
 <?$aTags = array();?>
@@ -21,7 +20,6 @@ Words not found!
 <span class="tag-title"><?=__( 'Tags' )?>:</span> <?=implode( ', ', $aTags )?>
 <?endif;?>
 </div>
-
 
 <?
 $horizontal_words = array();

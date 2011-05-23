@@ -10,12 +10,14 @@ var context = {};
 
 $(function(){
 
+	$( '.direction-selector' ).radioDecorator();
+	
 	context.crossword_area = new CrosswordArea({
 		element	 : '.d-crossword-area',
 		cell_size   : 20,
 		grid_size   : {
-						width   : 30,
-						height  : 50
+                            width   : 25,
+                            height  : 25
 		},
 		crossword	: new Crossword
 	});
@@ -23,12 +25,15 @@ $(function(){
 	context.word_preview_point = $( '.word-preview' ).offset();
 	
 	context.word_form = new WordForm({
-						form				: '.word-form',
-						text_field			: '#word',
-						direction_field		: 'input[name=direction]',
-						definition_field	: '#word-definition',
-						submit_button		: '.submit-button',
-						preview_box			: 'div.word-preview'
+                                form		: '.word-form',
+                                textField	: '#word',
+                                directionField	: 'input[name=direction]',
+                                definitionField	: '#word-definition',
+                                submitButton	: '.submit-button',
+                                previewBox	: 'div.word-preview',
+                                statusElement   : '#form-status',
+                                defaultStatus   : 'info',
+                                defaultStatusText: 'In this place you can see current constructor status'
 	});
 	
 	WordView.context = context;
