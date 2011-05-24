@@ -6,6 +6,14 @@
 function WordForm( options ) {
 
     /**
+     *
+     */
+    options = $.extend({
+        onWordChange        : function( word_view ){},
+        onBeforeWordChange  : function( word_view ){}
+    }, options); 
+    
+    /**
      * 
      */
     var _this = this;
@@ -46,11 +54,13 @@ function WordForm( options ) {
      * 
      */
     this.bind = function( word_view ) {
+        
         binded_item = word_view;
         var word = word_view.getWordItem();
 		
-        text_field.val( word.text );
-        definition_field.val( word.definition );
+        text_field.val( word.getText() );
+        
+        definition_field.val( word.getDefinition() );
         direction_field.filter( '[value=' + word.getDirection() + ']' ).attr( 'checked', 'checked' );
     };
 
@@ -83,13 +93,13 @@ function WordForm( options ) {
     this.getWordItem = function() {
 		
         var word_item = new WordItem(
-        {
-            'text'			: text_field.val(),
-            'definition'	: definition_field.val()
-        },
-        {
-            'direction'		: direction_field.filter(':checked').val() 
-        }
+            {
+                'text'		: text_field.val(),
+                'definition'	: definition_field.val()
+            },
+            {
+                'direction'	: direction_field.filter(':checked').val() 
+            }
         );
 		
         return word_item;
@@ -119,7 +129,7 @@ function WordForm( options ) {
         var element_height = binded_item.getElement().find( 'table' ).height();
 
         binded_item.getElement().css({
-            'left'	: Math.round( box_length / 2 - element_width / 2 ) + 'px',
+            'left'	: Math.round( box_length / 2 - element_width  / 2 ) + 'px',
             'top'	: Math.round( box_height / 2 - element_height / 2 ) + 'px'
         });
 			
@@ -142,9 +152,9 @@ function WordForm( options ) {
      */
     this.setStatus = function( code, message ) {
         status_element
-            .attr( 'class', code )
-            .find( '.text' )
-                .text( message )
+        .attr( 'class', code )
+        .find( '.text' )
+        .text( message )
     }
 
     /**
@@ -152,9 +162,19 @@ function WordForm( options ) {
      */
     this.resetStatus = function() {
         status_element
-            .attr( 'class', options.defaultStatus )
-            .find( '.text' )
-                .text( options.defaultStatusText );
+        .attr( 'class', options.defaultStatus )
+        .find( '.text' )
+        .text( options.defaultStatusText );
+    }
+    
+    /**
+     *
+     */
+    function _changeWord() {
+        
+         if ( _this.valid() ) {
+            options.onWordChange( _this.showWordItem() );
+         }
     }
     
     /**
@@ -164,19 +184,13 @@ function WordForm( options ) {
         
         this.resetStatus();
         
-        $( text_field ).add( definition_field )
-        .keyup(function(){
-            if ( _this.valid() ) {
-                _this.showWordItem();
-            }
-        })
-        .add( direction_field )
-        .change(function(){
-            if ( _this.valid() ) {
-                _this.showWordItem();
-            }
-        });
-        
+        $( text_field )
+            .add( definition_field )
+            .keyup( _changeWord )
+            .add( direction_field )
+            .change( _changeWord )
+            .keydown( function(){ options.onBeforeWordChange( _this.getWordItem() ) } ); 
+            
         status_element
             .find( '.icon' )
             .hover(
@@ -186,8 +200,8 @@ function WordForm( options ) {
                 function(){
                     status_element.find('.hint').hide();
                 }
-        )
-    };
+            )
+        };
 	
     this.initEvents();
 };
