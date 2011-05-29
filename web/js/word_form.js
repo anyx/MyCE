@@ -10,7 +10,8 @@ function WordForm( options ) {
      */
     options = $.extend({
         onWordChange        : function( word_view ){},
-        onBeforeWordChange  : function( word_view ){}
+        onBeforeWordChange  : function( word_view ){},
+        hideTimeout         : 3000
     }, options); 
     
     /**
@@ -21,47 +22,42 @@ function WordForm( options ) {
     /**
      * 
      */
-    var form = $( options.form );
+    var textField = $( options.textField );
 	
     /**
      * 
      */
-    var text_field = $( options.textField );
-	
-    /**
-     * 
-     */
-    var definition_field = $( options.definitionField );
+    var definitionField = $( options.definitionField );
 
     /**
      * 
      */
-    var direction_field = $( options.directionField );
+    var directionField = $( options.directionField );
 
     /**
-     * $var word_view
+     * $var wordView
      */
-    var binded_item = null;
+    var bindedItem = null;
 
     /**
      * 
      * @param options
      * @returns
      */
-    var status_element = $( options.statusElement );
+    var statusElement = $( options.statusElement );
 		
     /**
      * 
      */
-    this.bind = function( word_view ) {
+    this.bind = function( wordView ) {
         
-        binded_item = word_view;
-        var word = word_view.getWordItem();
+        bindedItem = wordView;
+        var word = wordView.getWordItem();
 		
-        text_field.val( word.getText() );
+        textField.val( word.getText() );
         
-        definition_field.val( word.getDefinition() );
-        direction_field.filter( '[value=' + word.getDirection() + ']' ).attr( 'checked', 'checked' );
+        definitionField.val( word.getDefinition() );
+        directionField.filter( '[value=' + word.getDirection() + ']' ).attr( 'checked', 'checked' );
     };
 
     /**
@@ -71,13 +67,13 @@ function WordForm( options ) {
 		
         this.resetStatus();
 		
-        if ( $.trim( text_field.val() ).length < 2 ) {
-            this.setStatus( 'error', 'Слишком короткое слово' );
+        if ( $.trim( textField.val() ).length < 2 ) {
+            this.setStatus( 'error', context.get( 'Lang/Constructor/wordLengthError' ) );
             return false;
         }
 		
-        if ( $.trim( definition_field.val() ).length < 3 ) {
-            this.setStatus( 'error', 'Слишком короткое определение слова' );
+        if ( $.trim( definitionField.val() ).length < 3 ) {
+            this.setStatus( 'error', context.get( 'Lang/Constructor/definitionLengthError' ) );
             return false;
         }
 
@@ -94,11 +90,11 @@ function WordForm( options ) {
 		
         var word_item = new WordItem(
             {
-                'text'		: text_field.val(),
-                'definition'	: definition_field.val()
+                'text'		: textField.val(),
+                'definition'	: definitionField.val()
             },
             {
-                'direction'	: direction_field.filter(':checked').val() 
+                'direction'	: directionField.filter(':checked').val() 
             }
         );
 		
@@ -110,58 +106,88 @@ function WordForm( options ) {
      */
     this.showWordItem = function() {
 		
-        if ( binded_item != null ) {
-            var word_item = binded_item.getWordItem(); 
-            word_item.setText( text_field.val() );
-            word_item.setDirection( direction_field.filter(':checked').val() );
-            word_item.setDefinition( definition_field.val() );
-            binded_item = new WordView( word_item );
+        if ( bindedItem != null ) {
+            var word_item = bindedItem.getWordItem(); 
+            word_item.setText( textField.val() );
+            word_item.setDirection( directionField.filter(':checked').val() );
+            word_item.setDefinition( definitionField.val() );
+            bindedItem = new WordView( word_item );
         } else {
-            binded_item = new WordView( this.getWordItem() );
+            bindedItem = new WordView( this.getWordItem() );
         }
 
-        binded_item.getElement().appendTo( $( options.previewBox ).empty() );
+        bindedItem.getElement().appendTo( $( options.previewBox ).empty() );
 		
         var box_length = $( options.previewBox ).width();
         var box_height = $( options.previewBox ).height();
 		
-        var element_width = binded_item.getElement().find( 'table' ).width();
-        var element_height = binded_item.getElement().find( 'table' ).height();
+        var element_width = bindedItem.getElement().find( 'table' ).width();
+        var element_height = bindedItem.getElement().find( 'table' ).height();
 
-        binded_item.getElement().css({
+        bindedItem.getElement().css({
             'left'	: Math.round( box_length / 2 - element_width  / 2 ) + 'px',
             'top'	: Math.round( box_height / 2 - element_height / 2 ) + 'px'
         });
 			
-        return binded_item;
+        return bindedItem;
     };
 	
     /**
      * 
      */
     this.clear = function() {
-        text_field.val( '' );
-        definition_field.val( '' );
-        direction_field.eq(0).attr( 'checked', 'checked' );
-        binded_item = null;
+        textField.val( '' );
+        definitionField.val( '' );
+        directionField.eq(0).attr( 'checked', 'checked' );
+        bindedItem = null;
     };
 
     /**
-     *
+     * Set and display form status
      *
      */
-    this.setStatus = function( code, message ) {
-        status_element
+    this.setStatus = function( code, message, autoShow, autoHide ) {
+        
+        if ( typeof autoShow == 'undefined' ) {
+            autoShow = false;
+        }
+
+        if ( typeof autoHide == 'undefined' ) {
+            autoHide = false;
+        }
+
+        statusElement
         .attr( 'class', code )
         .find( '.text' )
         .text( message )
+        
+        statusElement.stop();
+        
+        var hintElement = statusElement.find( '.hint' );
+        
+        if ( autoShow ) {
+            hintElement.show()
+        }
+        
+        if ( autoHide ) {
+            
+            if ( hintElement.data( 'timer' ) > 0 ) {
+                clearTimeout( hintElement.data( 'timer' ) );
+            }
+            
+            hintElement.data( 'timer', setTimeout(function(){
+                hintElement.fadeOut();
+                _this.resetStatus();
+            }, options.hideTimeout));
+        }
+
     }
 
     /**
      *
      */
     this.resetStatus = function() {
-        status_element
+        statusElement
         .attr( 'class', options.defaultStatus )
         .find( '.text' )
         .text( options.defaultStatusText );
@@ -184,24 +210,24 @@ function WordForm( options ) {
         
         this.resetStatus();
         
-        $( text_field )
-            .add( definition_field )
+        $( textField )
+            .add( definitionField )
             .keyup( _changeWord )
-            .add( direction_field )
+            .add( directionField )
             .change( _changeWord )
-            .keydown( function(){ options.onBeforeWordChange( _this.getWordItem() ) } ); 
+            .keydown( function(){options.onBeforeWordChange( _this.getWordItem() )} ); 
             
-        status_element
+        statusElement
             .find( '.icon' )
             .hover(
                 function(){
-                    status_element.find('.hint').show();
+                    statusElement.find('.hint').show();
                 },
                 function(){
-                    status_element.find('.hint').hide();
+                    statusElement.find('.hint').hide();
                 }
             )
         };
 	
     this.initEvents();
-};
+}

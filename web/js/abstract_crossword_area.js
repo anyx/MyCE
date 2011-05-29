@@ -1,3 +1,6 @@
+/**
+ *
+ */
 function AbstractCrosswordArea( options ) {
 	
     options = $.extend({

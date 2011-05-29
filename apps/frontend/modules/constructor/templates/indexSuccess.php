@@ -68,16 +68,24 @@
                 },
                 {
                     x 		: <?= $word_item['x'] ?>,
-                    y              : <?= $word_item['y'] ?>,
+                    y           : <?= $word_item['y'] ?>,
                     direction	: "<?= $word_item->isHorizontal() ? 'horizontal' : 'vertical' ?>"
                 }
             );
-            context.crossword_area.getCrossword().addItem( word_item );
+            context.get( 'Constructor/CrosswordArea').getCrossword().addItem( word_item );
             <? endforeach; ?>
         <? endif; ?>
-			
-        var crossword = context.crossword_area.getCrossword();
-        context.crossword_area.showCrossword();
+        context.get( 'Constructor/CrosswordArea').showCrossword();
     });
+    
+    <?slot('after_context')?>
+        context.set( 'Lang/Constructor', {
+            successSave           : "<?=__( 'Crossword saved successfully' )?>",
+            wordLengthError       : "<?=__( 'Word\'s length is too short' )?>",
+            definitionLengthError : "<?=__( 'Word\'s definition length is too short' )?>",
+            infoMessage           : "<?=__( 'In this place you can see current constructor status' )?>"
+        });
+    <? end_slot()?>
+
     </script>
 </div>

@@ -43,7 +43,7 @@ Not found
 
 <dl class="tag-list">
 <?foreach ( $crosswords as $crossword ):?>
-	<dt><?= link_to( $crossword, 'constructor_resolve', array( 'crossword_id' => $crossword->getId() ) )?></dt>
+	<dt><?= link_to( $crossword, 'constructor_resolve', array( 'id' => $crossword->getId() ) )?></dt>
 	<dd><?=$crossword->getDescription()?></dd>
 <?endforeach;?>
 </dl>                

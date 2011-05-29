@@ -19,7 +19,6 @@ function CrosswordArea( options ) {
         onAddItem: function( crossword, word_view ){}
     }, options); 
 
-
     /**
      * 
      */
@@ -72,6 +71,8 @@ function CrosswordArea( options ) {
             }
         });
 			
+        var crosswordStartPoint = $( _this.getElement() ).offset();
+        
         $( _this.getElement() ).droppable({
             accept		: '.word-view',
             activeClass	: 'droppable-active',
@@ -79,8 +80,9 @@ function CrosswordArea( options ) {
             drop: function( event, ui ) {
                 var word_view = ui.draggable.get(0);
 	
-                var x = Math.ceil( ( event.pageX - crossword_start_point.left ) / _this.getCellSize() ) - 1;
-                var y = Math.ceil( ( event.pageY - crossword_start_point.top )  / _this.getCellSize() ) - 1;
+        
+                var x = Math.ceil( ( event.pageX - crosswordStartPoint.left ) / _this.getCellSize() ) - 1;
+                var y = Math.ceil( ( event.pageY - crosswordStartPoint.top )  / _this.getCellSize() ) - 1;
 	
                 var active_cell = _this.getCell( x, y );
 	

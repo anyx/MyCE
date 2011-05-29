@@ -5,6 +5,6 @@ if ( empty( $crosswords ) ) {
 ?>
 <ul>
 <?foreach( $crosswords as $crossword ):?>
-	<li><?=link_to( $crossword->getTitle(),'@constructor_resolve?crossword_id=' . $crossword->getId() )?></li> 
+	<li><?=link_to( $crossword->getTitle(),'@constructor_resolve?id=' . $crossword->getId() )?></li> 
 <?endforeach?>
 </ul>

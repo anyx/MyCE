@@ -22,7 +22,7 @@
   <tbody>
     <?php foreach ($crosswords as $crossword): ?>
     <tr>
-      <td><a href="<?php echo url_for('@constructor_resolve?crossword_id='.$crossword->getId()) ?>" title="<?=__( 'Resolve' )?>"><?php echo $crossword->getTitle() ?></a></td>
+      <td><a href="<?php echo url_for('@constructor_resolve?id='.$crossword->getId()) ?>" title="<?=__( 'Resolve' )?>"><?php echo $crossword->getTitle() ?></a></td>
       <td><?php echo $crossword->getDescription() ?></td>
       <td><?php echo $crossword->getCreatedAt() ?></td>
       <td class="text-center">

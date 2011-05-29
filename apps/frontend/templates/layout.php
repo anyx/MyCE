@@ -7,9 +7,16 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-    <meta name="google-site-verification" content="We-QTqaenrmA_G6_Mxv9FeR_gw1kxzC6dy34yJkiQY4" />
+    <?
+    ?>
+  <?php include_component('front', 'jscontext', array() ); ?>
+    <script type="text/javascript">
+        <?php include_slot('after_context')?>
+    </script>
   </head>
   <body>
+      
+  
   <div class="top-panel-wrapper">	
 	<div class="top-panel b-layout">
 		<div class="user-panel">

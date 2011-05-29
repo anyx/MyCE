@@ -1,20 +1,12 @@
 /**
- * Created by JetBrains PhpStorm.
- * User: Aleksandr Klimenkov
- * Date: 03.04.11
- * Time: 16:48
- * To change this template use File | Settings | File Templates.
+ * Init constructor form
  */
-
-var context = {};
 
 $(function(){
 
     $( '.direction-selector' ).radioDecorator();
 	
-    context.word_preview_point = $( '.word-preview' ).offset();
-	
-    context.word_form = new WordForm({
+    context.set( 'Constructor/WordForm', new WordForm({
         form                : '.word-form',
         textField           : '#word',
         directionField      : 'input[name=direction]',
@@ -23,20 +15,20 @@ $(function(){
         previewBox          : 'div.word-preview',
         statusElement       : '#form-status',
         defaultStatus       : 'info',
-        defaultStatusText   : 'In this place you can see current constructor status',
+        defaultStatusText   : context.get( 'Lang/Constructor/infoMessage' ),
         onBeforeWordChange  : function( word_item ) {
-            var crossword = context.crossword_area.getCrossword();
+            var crossword = context.get( 'Constructor/CrosswordArea').getCrossword();
             
             if ( ( index = crossword.getItemIndex( word_item ) ) != null ) {
                 crossword.removeItemByIndex( index );
-                context.crossword_area.showCrossword();
+                context.get( 'Constructor/CrosswordArea').showCrossword();
             }
         }
-    });
+    }));
 	
     WordView.context = context;
 
-    context.crossword_area = new CrosswordArea({
+    context.set( 'Constructor/CrosswordArea', new CrosswordArea({
         element	 : '.d-crossword-area',
         cell_size   : 20,
         grid_size   : {
@@ -45,22 +37,20 @@ $(function(){
         },
         crossword   : new Crossword,
         onAddItem   : function( crossword, word_view ) {
-           context.word_form.clear();
+           context.get( 'Constructor/WordForm').clear();
         }
-    });
-
-
+    }));
 
     /**
      * Saving Crossword
      */
     $( '#save-button' ).click(function(){
         var post_items = {
-            items : context.crossword_area.getCrossword().getItemsData()
+            items : context.get( 'Constructor/CrosswordArea').getCrossword().getItemsData()
         };
 		
-        $.post( '/frontend_dev.php/constructor/1/save', post_items, function( words ) {
-            var crossword = context.crossword_area.getCrossword();
+        $.post( '/' + context.get( 'Site/Path' ) + 'constructor/' + context.get( 'Page/Params' )['id']  + '/save', post_items, function( words ) {
+            var crossword = context.get( 'Constructor/CrosswordArea' ).getCrossword();
             crossword.clear();
 			
             for ( var i = 0; i < words.length; i++ ) {
@@ -79,8 +69,9 @@ $(function(){
                      )
                 );
             }
-            context.crossword_area.setCrossword( crossword );
-            context.crossword_area.showCrossword();
+            context.get( 'Constructor/CrosswordArea').setCrossword( crossword );
+            context.get( 'Constructor/CrosswordArea').showCrossword();
+            context.get( 'Constructor/WordForm' ).setStatus( 'success', context.get( 'Lang/Constructor/successSave' ), true, true );
         }, 'json');
     });
 });

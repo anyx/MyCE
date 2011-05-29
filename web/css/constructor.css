@@ -67,11 +67,6 @@
     border: 1px solid #ccc;
     padding: 2px;
 }
-.error {
-    color: #c00;
-    position: absolute;
-    left: 0px; 
-}
 #form-status {
     width: 32px;
     float: right;
@@ -91,7 +86,6 @@
 }
 .info .hint, .info .hint .angle {
     border-color: #006ec4;
-    background-color: #fff;
     color: #006ec4;
 }
 /* -------------------- error ----------------- */
@@ -100,9 +94,17 @@
 }
 .error .hint, .error .hint .angle {
     border-color: #c00;
-    background-color: #fff;
     color: #c00;
 }
+/* -------------------- success ----------------- */
+.success .icon {
+    background-image: url(../images/icons/checkmark.png)
+}
+.success .hint, .success .hint .angle {
+    border-color: #0c0;
+    color: #0c0;
+}
+
 #form-status .hint {
     border-width: 1px;
     border-style: solid;
@@ -118,6 +120,7 @@
 .hint .angle {
     border-right: 1px solid #c00;
     border-bottom: 1px solid #c00;
+    background-color: #fff; 
     width: 17px;
     height: 17px;
     -moz-transform: rotate(45deg);
