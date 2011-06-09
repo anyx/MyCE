@@ -136,7 +136,19 @@
 }
 /* Save 
 ---------------------------------- */
-
+.save-button {
+    margin: 10px 0px;
+    float: right; 
+}
+.clear-button {
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    border: 1px #009BCE solid;
+    height: 24px;
+    padding: 0px 8px;
+    margin-top: -30px;
+    background: #fff;
+}
 /* Radio decorator
 ---------------------------------- */
 .radio-decorator {

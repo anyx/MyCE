@@ -74,4 +74,12 @@ $(function(){
             context.get( 'Constructor/WordForm' ).setStatus( 'success', context.get( 'Lang/Constructor/successSave' ), true, true );
         }, 'json');
     });
+    
+    /**
+     * Clear word
+     */
+    
+    $( '.clear-button' ).click(function(){
+        context.get( 'Constructor/WordForm' ).clear();
+    });
 });

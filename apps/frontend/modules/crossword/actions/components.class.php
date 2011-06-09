@@ -24,5 +24,5 @@ class crosswordComponents extends sfComponents {
     		
 	    	$this->solutions = Doctrine_Core::getTable( 'UserAnswer' )->getCrosswordAnswers( $crosswordIds );
     	}
-	}   
+    }   
 }  

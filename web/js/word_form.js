@@ -140,6 +140,7 @@ function WordForm( options ) {
         definitionField.val( '' );
         directionField.eq(0).attr( 'checked', 'checked' );
         bindedItem = null;
+        this.resetStatus();
     };
 
     /**
@@ -176,8 +177,7 @@ function WordForm( options ) {
             }
             
             hintElement.data( 'timer', setTimeout(function(){
-                hintElement.fadeOut();
-                _this.resetStatus();
+                hintElement.fadeOut( 400, _this.resetStatus );
             }, options.hideTimeout));
         }
 

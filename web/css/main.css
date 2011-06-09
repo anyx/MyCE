@@ -122,6 +122,7 @@ h2.title {
     font-size: 24px;
     margin-right: 150px;
     margin-top: -15px;
+    color: #0069b3;
 }
 P {
     margin: 20px 0px;
@@ -129,6 +130,9 @@ P {
 }
 .text-center {
     text-align: center;
+}
+.text-left {
+    text-align: left;
 }
 .main-crosswords {
     width: 100%;
@@ -207,4 +211,70 @@ P {
 }
 .wrong-count {
     color: #c00;
+}
+/* Common
+-------------------------------*/
+.save-button {
+    width: 150px;
+    border: 1px solid #ccf;
+    background: #fff;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    cursor: pointer;
+}
+
+/* User Table
+-------------------------------*/
+.user-crosswords, .user-crosswords td, .user-crosswords th {
+/*
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+*/
+}
+.user-crosswords td, .user-crosswords th {
+    padding: 3px 4px;
+    font-size: 13px;
+}
+.user-crosswords a.title {
+    font-weight: bold;
+}    
+.user-crosswords a {
+    text-decoration: none;
+    color: #408ce8;
+}
+.user-crosswords a:hover {
+    text-decoration: underline;
+}
+.user-crosswords th {
+    color: #1D3E64;
+    border-bottom: 1px solid #1D3E64;
+}
+
+.user-crosswords td {
+    background: #f5f3eb;
+    border-top: 1px solid #f7f5e3;
+    color: #555;
+}
+.user-crosswords .odd td {
+    color: #fff;
+    background: #408ce8;
+    border-bottom: 1px solid #007cB6;
+}
+.user-crosswords .odd a {
+    color: #ffc320;
+}
+.user-crosswords .description {
+}
+.user-crosswords .active-icon {
+    background: url(../images/icons/active.png) no-repeat;
+    width: 32px;
+    height: 32px;
+}
+.user-crosswords .inactive-icon {
+    background: url(../images/icons/inactive.png) no-repeat;
+    width: 32px;
+    height: 32px;
 }

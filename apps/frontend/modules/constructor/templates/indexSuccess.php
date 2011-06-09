@@ -6,6 +6,7 @@
     <?= __('Just add type word, select diraction and drag him to the crossword area') ?>
 </p>
 
+
 <div class="constructor">
     <div class="right-panel">
         <div class="words-panel">
@@ -23,6 +24,7 @@
 
                     <dt>
                     <label for="word"><?= __('Word') ?></label>
+                    <input type="button" value="<?=__('Clear')?>" class="clear-button" />
                     </dt>
                     <dd class="form-item text">
                         <input type="text" name="word" maxlength="255" id="word" />
@@ -50,7 +52,7 @@
             </div>
         </div>
 
-        <input type="button" value="Save Crossword" id="save-button" />
+        <input type="button" value="<?=__("Save Crossword")?>" id="save-button" class="save-button" />
     </div>
 
     <div class="d-crossword-area">

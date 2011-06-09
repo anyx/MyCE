@@ -10,8 +10,19 @@
  */
 class CrosswordForm extends BaseCrosswordForm
 {
+  /**
+   * 
+   */
   public function configure()
   {
-	  unset( $this['created_at'], $this['updated_at'], $this['is_activated'], $this['is_public'] );
+	  unset( $this['created_at'], $this['updated_at'], $this['is_activated'], $this['is_public'], $this['user_id'] );
+  }
+  
+  /**
+   *
+   * @param type $userId 
+   */
+  public function setUserId( $userId ) {
+      $this->values['user_id'] = $userId;
   }
 }

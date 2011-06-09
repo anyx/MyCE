@@ -4,3 +4,4 @@ cache
 log
 .project
 .buildpath
+/nbproject/private/

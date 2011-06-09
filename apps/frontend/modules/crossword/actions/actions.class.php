@@ -70,16 +70,17 @@ class crosswordActions extends sfActions
     $this->redirect('crossword/index');
   }
 
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
+  protected function processForm(sfWebRequest $request, sfForm $form) {
+    
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
+    
+    $form->setUserId( $this->getUser()->getGuardUser()->getId() );
+    
+    if ( $form->isValid() ) {
+        
       $crossword = $form->save();
 
       $this->redirect('crossword/edit?id='.$crossword->getId());
     }
   }
-
-  
 }
