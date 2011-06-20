@@ -52,11 +52,12 @@
             </div>
         </div>
 
-        <input type="button" value="<?=__("Save Crossword")?>" id="save-button" class="save-button" />
+        <input type="button" value="<?=__("Save Crossword")?>" id="save-button" class="constructor-save button" />
     </div>
 
     <div class="d-crossword-area">
     </div>
+    
     <script type="text/javascript">
 	
         $(function(){
@@ -85,7 +86,8 @@
             successSave           : "<?=__( 'Crossword saved successfully' )?>",
             wordLengthError       : "<?=__( 'Word\'s length is too short' )?>",
             definitionLengthError : "<?=__( 'Word\'s definition length is too short' )?>",
-            infoMessage           : "<?=__( 'In this place you can see current constructor status' )?>"
+            infoMessage           : "<?=__( 'In this place you can see current constructor status' )?>",
+            saving                : "<?=__( 'Saving...' )?>",
         });
     <? end_slot()?>
 

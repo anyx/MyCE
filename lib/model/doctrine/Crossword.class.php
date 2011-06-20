@@ -10,17 +10,47 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Crossword extends BaseCrossword
-{
-	/**
-	 * 
-	 * Enter description here ...
-	 */
-	public function getWords() {
-		return Doctrine_Query::create()
-			->from('Word w')
-			->where('w.crossword_id = ?', $this->getId())
-			->orderBy( 'w.y ASC, w.x ASC' )
-			->execute();
-	}
+class Crossword extends BaseCrossword {
+
+    /**
+     *
+     * @return Doctrine_Query 
+     */
+    private function getWordsQuery() {
+        return Doctrine_Query::create()
+                ->from('Word w')
+                ->where('w.crossword_id = ?', $this->getId());
+    }
+
+    /**
+     * 
+     * Enter description here ...
+     */
+    public function getWords() {
+        return $this->getWordsQuery()
+                ->orderBy('w.y ASC, w.x ASC')
+                ->execute();
+    }
+
+    /**
+     * Checking crossword validity
+     * 
+     * @todo Intersections and stuff
+     * 
+     * @return bool
+     */
+    public function valid() {
+        return $this->getWordsQuery()->count() > 0;
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+    public function removeWords() {
+        return Doctrine_Query::create()
+            ->delete('Word w')
+            ->where('w.crossword_id = ?', $this->getId())
+            ->execute();
+    }
 }

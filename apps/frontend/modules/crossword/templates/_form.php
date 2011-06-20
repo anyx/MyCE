@@ -5,20 +5,44 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-  <table>
-    <tfoot>
-      <tr>
-        <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('crossword/index') ?>">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'crossword/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
-          <input type="submit" value="Save" />
-        </td>
-      </tr>
-    </tfoot>
-    <tbody>
-      <?php echo $form ?>
-    </tbody>
-  </table>
+
+<?=$form->renderGlobalErrors();?>
+
+<dl class="form">
+<?php foreach ( $form as $field ):?>
+    <?php if ( $field->isHidden() ) continue; ?>
+    
+    <?php if ( $field->getWidget()->getOption( 'type' ) == 'checkbox' ): ?>
+        <dt><?=$field->render();?> <?=$field->renderHelp();?><?=$field->renderLabel();?><?=$field->renderError();?></dt>
+        <dd></dd>
+    
+    <?php else: ?>
+        <dt><?=$field->renderHelp();?><?=$field->renderLabel();?><?=$field->renderError();?></dt>
+        <dd><?=$field->render();?></dd>
+    <?php endif;?>
+        
+<?php endforeach;?>
+</dl>
+
+<?php //echo $form ?>
+
+<input type="submit" value="<?=__("Save")?>" class="save-crossword button" />
+          
+<?php if (!$form->getObject()->isNew()): ?>
+<?=link_to(
+            'Delete',
+            'crossword/delete?id='.$form->getObject()->getId(),
+            array(
+                'method'    => 'delete',
+                'confirm'   => 'Are you sure?',
+                'class'     => 'delete button'
+            )
+);?>
+<?php endif; ?>
+
+<?=$form->renderHiddenFields();?>
 </form>
+
+<?php slot( 'help_panel' );?>
+<?=__( 'If crossword is not valid, you can\'t public crossword' );?>
+<?php end_slot(); ?>

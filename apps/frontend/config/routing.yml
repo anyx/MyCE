@@ -21,7 +21,7 @@ constructor_save:
     crossword_id: \d+
     sf_method: [post]
 
-constructor_resolve:
+crossword_resolve:
   url:     /resolve/:id/
   class:   sfDoctrineRoute
   options: { model: Crossword, type: object }

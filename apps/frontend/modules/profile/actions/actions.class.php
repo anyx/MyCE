@@ -16,7 +16,5 @@ class profileActions extends sfActions
   */
   public function executeIndex( sfWebRequest $request ) {
   	$this->user = $this->getUser()->getGuardUser();
-
-  	$this->createdCrosswords = Doctrine::getTable( 'Crossword')->getUserCrosswords( $this->user->getId() );
   }
 }

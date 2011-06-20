@@ -48,8 +48,11 @@ $(function(){
         var post_items = {
             items : context.get( 'Constructor/CrosswordArea').getCrossword().getItemsData()
         };
-		
+	
+        context.get( 'Constructor/WordForm' ).setStatus( 'loading', context.get( 'Lang/Constructor/saving' ) );
+
         $.post( '/' + context.get( 'Site/Path' ) + 'constructor/' + context.get( 'Page/Params' )['id']  + '/save', post_items, function( words ) {
+            
             var crossword = context.get( 'Constructor/CrosswordArea' ).getCrossword();
             crossword.clear();
 			

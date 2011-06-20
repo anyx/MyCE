@@ -104,6 +104,14 @@
     border-color: #0c0;
     color: #0c0;
 }
+/* -------------------- info ----------------- */
+.loading .icon {
+    background-image: url(../images/icons/loader.gif);
+}
+.loading .hint, .loading .hint .angle {
+    border-color: #006ec4;
+    color: #006ec4;
+}
 
 #form-status .hint {
     border-width: 1px;

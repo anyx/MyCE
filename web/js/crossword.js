@@ -46,7 +46,10 @@ function WordItem( data, position ) {
      * 
      */
     this.getId = function() {
-        return parseInt( data.id );
+        if ( 'id' in data ) {
+            return parseInt( data.id );
+        }
+        return 0;
     };
 	
     /**

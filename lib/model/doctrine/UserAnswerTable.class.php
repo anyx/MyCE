@@ -81,4 +81,20 @@ class UserAnswerTable extends Doctrine_Table {
         }
         return $result;
     }
+
+    /**
+     *
+     * @param int $user_id
+     * @return Doctrine_Query
+     */
+    public function getUserAnswersQuery($user_id) {
+
+        if (empty($user_id) || !is_numeric($user_id)) {
+            throw new InvalidArgumentException('User id is missing');
+        }
+
+        return $this->getQueryObject()
+                ->where('user_id = ?', $user_id);
+    }
+
 }
