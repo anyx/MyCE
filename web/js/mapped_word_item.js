@@ -1,9 +1,7 @@
 /**
  * 
- * @param length
- * @param direction
- * @param definition
- * @param id
+ * @param data
+ * @param position
  * @returns {MappedWord}
  */
 function MappedWordItem( data, position ) {

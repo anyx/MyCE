@@ -66,12 +66,19 @@
 
             <div class="heading">
                 <h1 class="site-name"><a href="<?= url_for('homepage') ?>"><?= __('My Crossword') ?></a></h1>
+				
+				<div class="icon-beta"></div>
+				<div class="icon-symbols"></div>
 
                 <div class="menu-block">
                     <ul class="menu">
-                        <li><a href="#">Create crossword</a></li>
+                        <li>
+							<?=link_to( 'Create crossword', 'crossword/new' )?>
+						</li>
                         <li><a href="#">Most Popular</a></li>
-                        <li><a href="#">About</a></li>
+                        <li>
+							<?=link_to( 'About', '@page?page=about' )?>
+						</li>
                     </ul>
                 </div>
             </div>
@@ -79,12 +86,12 @@
             <div class="content-block">
 
                 <?php if ( has_slot( 'help_panel' ) ):?>
-                    <div class="helpPanel">
+                    <div class="help-panel">
                         <?php include_slot( 'help_panel' ); ?>
                     </div>
                 <?php endif;?>
                 
-                <div class="content <?=!has_slot( 'help_panel' ) ? : 'with-help' ;?>">
+                <div class="content <?=!has_slot( 'help_panel' ) ? '' : 'with-help' ;?>">
 
                 <h2 class="title"><? include_slot('title') ?></h2>
                 
@@ -100,9 +107,12 @@
                 </div>
             </div>
             
-            <div class="footer">
-                
-            </div>
         </div>
+		
+		<div class="footer">
+			<div class="footer-content">
+			<a href="<?=url_for('@page?page=about')?>"><?=__( 'About' )?></a>
+			</div>
+		</div>
     </body>
 </html>

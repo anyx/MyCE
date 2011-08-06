@@ -22,10 +22,8 @@
         </tr>
     </thead>
     <tbody>
-        <?php $bOdd = false; ?>
         <?php foreach ( $crosswords as $crossword ): ?>
-            <?php $bOdd = !$bOdd; ?>
-            <tr class="<?= !$bOdd ? '' : 'odd' ?>">
+            <tr>
                 <td class="name-container">
                     <a href="<?php echo url_for('@crossword_resolve?id=' . $crossword->getId()) ?>" class="title" title="<?= __('Resolve') ?>">
                         <?php echo $crossword->getTitle() ?>

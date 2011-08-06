@@ -1,5 +1,7 @@
-* {padding:0px; margin:0px;}
-
+* { 
+	padding: 0px;
+	margin: 0px;
+}
 BODY, HTML {
     position:relative;
     height:100%;
@@ -19,14 +21,49 @@ BODY {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007eb8', endColorstr='#009de6');
     position: relative;
 }
-.b-layout {
+UL {
+	padding: 0px 20px;
+}
+.b-layout, .footer-content {
     position:relative;
     margin:0 auto;
     width: 900px;
     height: 100%;
 }
+.b-layout {
+	margin-bottom: 220px;
+}
+.icon-beta {
+	width: 130px;
+	height: 50px;
+	background: url(../images/beta.png) no-repeat left top;
+    position: absolute;
+    top: 45px;
+    left: 195px;	
+}
+.icon-symbols {
+	width: 56px;
+	height: 41px;
+	background: url(../images/symbols.png) no-repeat left top;
+    position: absolute;
+    top: 25px;
+    right: -35px;	
+}
+.icon-cat {
+	width: 216px;
+	height: 240px;
+	background: url(../images/cat.png) no-repeat left top;
+	float: left;
+	margin: 20px 20px 20px 60px;
+}
 .footer {
-    height: 200px;
+    min-height: 200px;
+	margin: 0px 0px 0px 0px;
+	background: #1d3e64;
+	padding: 15px;
+}
+.footer a {
+	color: #bfe1f1;
 }
 .content-block {
     background: #fff;
@@ -35,9 +72,8 @@ BODY {
     border-radius: 30px;
     -moz-border-radius: 30px;
     position: relative;
-    overflow-x: hidden;
     height: 100%;
-    margin: 0px 0px -100px 0px;
+    margin: 0px 0px 0px 0px;
 }
 .menu-block {
     top: 65px;
@@ -142,6 +178,14 @@ H2.title {
     margin-top: -15px;
     color: #0069b3;
 }
+H2.welcome {
+	font-size: 24px;
+	color: #E75C58;
+	margin: 20px 0px 0px 30px;
+}
+H3.subtitle {
+	color: #E75C58;
+}
 .subtitle {
     margin: 10px 5px;
     color: #408CE8;
@@ -164,7 +208,7 @@ H2.title {
     border-color: #009de6;
 }
 .with-help {
-    margin-right: 250px;
+    margin-right: 240px;
 }
 .message {
     color: #555;
@@ -178,7 +222,7 @@ H2.title {
     width: 100%;
 }
 P {
-    margin: 20px 0px;
+    margin: 15px 0px;
     color: #333;
 }
 .text-center {
@@ -188,11 +232,12 @@ P {
     text-align: left;
 }
 .main-crosswords {
+	clear: both;
     width: 100%;
     position: relative;
 }
 .main-block {
-    width: 48%;
+    width: 33%;
     float: left;
 }
 .tag-list {
@@ -212,10 +257,33 @@ P {
 .user-panel A:hover {
     text-decoration: underline;
 }
+.crosswords-list {
+	width: 100%;
+}
+.crosswords-list TH {
+	text-align: left;
+}
+
+/** Main Page
+--------------------------------*/
+.block-on-main {
+	margin: 100px 0 20px 315px;
+}
+.big-text {
+	font-size: 30px;
+	color: #009de6;
+}
+UL.variants {
+	margin: 10px 10px 10px 5px;
+	font-style: italic;
+}
+UL.variants a {
+	font-size: 16px;
+}
 
 /** Help panel
 --------------------------------*/
-.helpPanel {
+.help-panel {
     width: 200px;
     float: right;
     background: #f7f5e3;
@@ -224,7 +292,10 @@ P {
     height: 100%;
     border-left: 1px dashed #ddd;
     font-size: 13px;
+	 border-radius: 0px 30px 30px 0px;
+    -moz-border-radius: 0px 30px 30px 0px;
 }
+
 /** List services
 --------------------------------*/
 .clear {
@@ -281,8 +352,34 @@ P {
 .blocks-container .block {
     display: none;
 }
-.blocks-container .active {
-    display: block;
+.tabs-container {
+	padding: 5px 0px;
+}
+.blocks-container a.active {
+    display: inline;
+	z-index: 2;
+	padding: 6px;
+	border: 1px solid #009de6;
+	border-bottom: 1px solid #fff;
+	margin-bottom: -1px;
+	margin: 0px 0px -1px 3px;
+}
+.tabs-container a {
+	padding: 5px;
+	margin-right: 3px;
+	margin: 2px 0px -1px 3px;
+	border: 1px solid #bfe1f1;
+	border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+	position: relative;
+	display: block;
+	float: left;
+	border-bottom: none;
+}
+.blocks-container .block {
+	clear: left;
+	border: 1px solid #009de6;
+	padding: 5px;
 }
 /* Common
 -------------------------------*/
@@ -315,7 +412,7 @@ P {
     float: right;
     margin: 10px 0px 0px 0px;
     width: 120px;
-    
+
 }
 .delete {
     margin: 10px 0px 0px 0px;
@@ -345,13 +442,22 @@ P {
     border-top: 1px solid #f7f5e3;
     color: #555;
 }
-.table .odd TD {
-    color: #fff;
-    background: #408ce8;
-    border-bottom: 1px solid #007cB6;
+.table TBODY TR:nth-child(odd) TD {
+	/* 
+	color: #fff;
+	background: #408ce8;
+	*/
+	background: #fff;
+	border-bottom: 1px solid #97d4ff;
 }
-.table .odd A {
-    color: #ffc320;
+.table TBODY TR:nth-child(odd) A {
+    /*color: #ffc320;*/
+}
+.crosswords-list TBODY TD:first-child{
+	width: 350px;
+}
+.crosswords-list TBODY TD:last-child{
+	width: 120px;
 }
 .user-crosswords A.title {
     font-weight: bold;
@@ -379,8 +485,8 @@ P {
 }
 .top-link-container {
     position: absolute;
-    right: 60px;
-    top: 10px;
+    right: 45px;
+    top: 0px;
 }
 .top-link-container A {
     color: #0066cc;
@@ -416,7 +522,7 @@ P {
 }
 /** Forms
 -------------------------------*/
-INPUT[type=text], TEXTAREA {
+FORM INPUT[type=text], FORM TEXTAREA {
     width: 500px;
     font-size: 14px;
     padding: 3px;

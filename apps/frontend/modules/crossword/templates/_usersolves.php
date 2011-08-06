@@ -1,7 +1,7 @@
 <h4 class="subtitle"><?= __('Solved crosswords') ?> (<?= count($pager) ?>)</h4>
 
 <? if ($pager->count() == 0): ?>
-    <?= __('You not solve crossword yet.') ?> <?= link_to('Whant now?', '@crosswords') ?>
+    <?= __('You not solve crossword yet.') ?> <?= link_to('Whant now?', 'crossword/list') ?>
     <? return; ?>
 <? endif; ?>
 

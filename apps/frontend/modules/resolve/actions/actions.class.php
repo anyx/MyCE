@@ -28,6 +28,10 @@ class resolveActions extends sfActions
   public function executeResolve(sfWebRequest $request)
   {
   	$this->crossword = $this->getRoute()->getObject();
+	
+	if ( $this->crossword->getUserId() != $this->getUser()->getGuardUser()->getId() )  {
+		$this->forward404Unless( $this->crossword->getIsActivated() );
+	}
   }
    
   public function executeSave(sfWebRequest $request)

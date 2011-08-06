@@ -10,7 +10,25 @@
  */
 class crosswordActions extends sfActions {
 
-    /**
+	/**
+	 *
+	 * @param sfWebRequest $request
+	 * @return type 
+	 */
+	public function executeList( sfWebRequest $request ) {
+		
+		$countPerPage = sfConfig::get('app_crosswords_per_page');
+		
+		$this->popularCrosswords = Doctrine::getTable( 'Crossword' )->getPopularCrosswords( $countPerPage );
+		
+		$this->popularSolutions = Doctrine_Core::getTable('UserAnswer')->getCrosswordAnswers( $this->getCrosswordIds( $this->popularCrosswords ) );
+		
+		$this->newCrosswords = Doctrine::getTable( 'Crossword' )->getNewCrosswords( $countPerPage );
+		
+		$this->newSolutions = Doctrine_Core::getTable('UserAnswer')->getCrosswordAnswers( $this->getCrosswordIds( $this->newCrosswords ) );
+	}
+	
+	/**
      *
      * @param sfWebRequest $request 
      */
@@ -98,7 +116,32 @@ class crosswordActions extends sfActions {
         $this->redirect('crossword/index');
     }
 
-    /**
+	/**
+	 *
+	 * @param sfWebRequest $request 
+	 */
+	public function executePopular( sfWebRequest $request ) {
+		
+		$countPerPage = sfConfig::get('app_crosswords_per_page');
+		
+		$this->crosswords = Doctrine::getTable( 'Crossword' )->getPopularCrosswords( $countPerPage );
+		$this->solutions = Doctrine_Core::getTable('UserAnswer')->getCrosswordAnswers( $this->getCrosswordIds( $this->crosswords ) );
+	}
+
+	/**
+	 *
+	 * @param sfWebRequest $request 
+	 */
+	public function executeNews( sfWebRequest $request ) {
+		$countPerPage = sfConfig::get('app_crosswords_per_page');
+		
+		$this->crosswords = Doctrine::getTable( 'Crossword' )->getNewCrosswords( $countPerPage );
+		$this->solutions = Doctrine_Core::getTable('UserAnswer')->getCrosswordAnswers( $this->getCrosswordIds( $this->crosswords ) );
+		
+	}
+	
+
+	/**
      *
      * @param sfWebRequest $request
      * @param sfForm $form 
@@ -117,4 +160,22 @@ class crosswordActions extends sfActions {
         }
     }
 
+	/**
+	 * Возвращает идентификаторы кроссовордов
+	 * 
+	 * @param type $crosswords
+	 * @return array
+	 */
+	private function getCrosswordIds( $crosswords ) {
+			
+		if ( empty( $crosswords ) ) {
+			return array();
+		}
+
+		$ids = array();
+		foreach ( $crosswords as $crossword ) {
+			$ids[] = $crossword->getId();
+		}
+		return $ids;
+	}
 }

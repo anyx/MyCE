@@ -1,3 +1,12 @@
+page:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Page
+    module:               pages
+    prefix_path:          /pages
+    column:               id
+    with_wildcard_routes: true
+
 word:
   class: sfDoctrineRouteCollection
   options:
@@ -27,7 +36,14 @@ crossword:
 
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
-
+pages:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Page
+    module:               pages
+    prefix_path:          /pages
+    column:               id
+    with_wildcard_routes: true
 # default rules
 homepage:
   url:   /

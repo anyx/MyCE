@@ -3,6 +3,8 @@
 
 # default values
 all:
+  crosswords:
+    per_page: 15
   melody:
     create_user: true               # to create a user for all melodies 
     facebook:
@@ -46,3 +48,26 @@ all:
           call: me                  
           path: id_str
           prefix: Twitter_
+    vkontakte:
+      key: 2399701
+      secret: jpIAY6YiK2JnIxIbSbTH
+      callback: @oauth_vkontakte
+      call_fields: uid, first_name, last_name, nickname, domain, sex, bdate, city, country, timezone, photo, photo_medium, photo_big, has_mobile, rate, contacts, education, online
+      scope: wall
+      user:
+        username:                   # the name of a field of sfGuardUser
+          path: response.0.uid   # path could be user.object.email for example to retrieve the right inforamtion
+          prefix: Vkontakte_
+          call: getProfiles
+        first_name:
+          path: response.0.first_name
+          call: getProfiles
+        last_name: 
+          path: response.0.last_name
+          call: getProfiles
+        email_address:               
+          path: response.0.uid               
+          prefix: VkontakteNoMail_
+          #key: true                 # it's a key to retrieve user from other services based on this information
+          call: getProfiles
+        

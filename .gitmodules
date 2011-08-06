@@ -1,0 +1,6 @@
+[submodule "plugins/sfMelodyVkontaktePlugin"]
+	path = plugins/sfMelodyVkontaktePlugin
+	url = git@github.com:anyx/sfMelodyVkontaktePlugin.git
+[submodule "plugins/sfVkontakteMelodyPlugin"]
+	path = plugins/sfVkontakteMelodyPlugin
+	url = git@github.com:anyx/sfVkontakteMelodyPlugin.git

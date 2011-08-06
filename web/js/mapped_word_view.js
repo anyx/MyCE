@@ -1,23 +1,21 @@
 /**
+ * @param mapped_word_item
  * 
  * @returns {MappedWordView}
  */
-
-var active_direction = 'horizontal';
-
 function MappedWordView( mapped_word_item ) {
 
 	var _this = this;
 	
 	/**
-	 * 
+	 *
 	 */
-	var letters = [];
+	var active_direction = 'horizontal';
 	
 	/**
 	 * 
 	 */
-	var messages_helper = arguments.callee.messages_helper;
+	var letters = [];
 	
 	this.constructor.call( this );
 
@@ -39,26 +37,12 @@ function MappedWordView( mapped_word_item ) {
 	/**
 	 * 
 	 */
-	this.setMessageHelper = function( helper ) {
-		messages_helper = helper;
-	};
-	
-	/**
-	 * 
-	 */
-	this.getMessageHelper = function( helper ) {
-		return messages_helper;
-	};
-
-	/**
-	 * 
-	 */
 	this.getWordItem = function() {
 		return mapped_word_item;
 	};
 	
 	/**
-	 * @param int code
+	 * @param code
 	 * @return bool
 	 */
 	function isAllowCharCode( code ) {
@@ -100,6 +84,9 @@ function MappedWordView( mapped_word_item ) {
 		return position;
 	};
 	
+	/**
+	 *
+	 */
 	function getElementByPosition( point ) {
 		return $( 'input[data-x=' + point.x + ']' )
 			.filter('[data-y=' + point.y + ']')
@@ -124,15 +111,16 @@ function MappedWordView( mapped_word_item ) {
 	
 		if ( mapped_word_item.isHorizontal() ) {
 			table.children( 'tbody' ).append( $( '<tr>' ) );
-		};
+		}
 		
 		for ( i = 0; i < mapped_word_item.getLength(); i++ ) {
+			var cell = null;
 		
 			if ( mapped_word_item.isHorizontal() ) {
-				var cell = $( '<td />' ).appendTo( table.children( 'tbody' ).children( 'tr' ) );
+				cell = $( '<td></td>' ).appendTo( table.children( 'tbody' ).children( 'tr' ) );
 				
 			} else {
-				var cell = $( '<td />' );
+				cell = $( '<td></td>' );
 				var tr = $( '<tr />' ).append( cell );
 				
 				table.children( 'tbody' )
@@ -142,8 +130,6 @@ function MappedWordView( mapped_word_item ) {
 			var position = this.getAbsoluteLetterPosition( i );
 			
 			letters[letters.length] = $( '<input type="text"/>' )
-				//.data( 'x', position.x )
-				//.data( 'y', position.y )
 				.attr( 'data-x', position.x )
 				.attr( 'data-y', position.y )
 				
@@ -164,7 +150,7 @@ function MappedWordView( mapped_word_item ) {
 	 */
 	this.initEvents = function() {
 		
-		specialKeys = {
+		var specialKeys = {
 				8 	: 'backspace',
 				37	: 'left',
 				38	: 'up',
@@ -183,7 +169,6 @@ function MappedWordView( mapped_word_item ) {
 				
 				var letter_position = $( this ).data();
 				var next_letter_position = new Point( letter_position.x, letter_position.y );
-				
 				
 				if ( keyCode in specialKeys ) {
 					switch( specialKeys[keyCode] ) {
@@ -208,12 +193,12 @@ function MappedWordView( mapped_word_item ) {
 						case 'del'	:
 							_this.setLetter( this, '' );
 							break;
-					};
+					}
 					
 					var next_element = $( getElementByPosition( next_letter_position ) ).focus();
 					
 					return false;
-				};
+				}
 				
 				var letter = String.fromCharCode( charCode );
 				

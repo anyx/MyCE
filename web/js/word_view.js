@@ -1,11 +1,4 @@
 /**
- * Created by JetBrains PhpStorm.
- * User: Aleksandr Klimenkov
- * Date: 03.04.11
- * Time: 21:20
- * To change this template use File | Settings | File Templates.
- */
-/**
  *
  * @param wordItem
  */
@@ -71,7 +64,7 @@ function WordView( wordItem ) {
                 var x = Math.ceil( ( event.pageX - crosswordStartPoint.left ) / cellSize ) - 1;
                 var y = Math.ceil( ( event.pageY - crosswordStartPoint.top ) / cellSize ) - 1; 
 			   
-                wordItem.setStartPoint({
+               _this.getWordItem.setStartPoint({
                     x : x,
                     y : y	   
                 });

@@ -11,8 +11,17 @@ class crosswordComponents extends sfComponents {
      */
     public function executeNewcrosswords(sfWebRequest $request) {
         $this->crosswords = Doctrine_Core::getTable('Crossword')->getNewCrosswords($this->count);
+
     }
 
+	/**
+	 *
+	 * @param sfWebRequest $request 
+	 */
+	public function executePopularcrosswords(sfWebRequest $request) {
+		$this->crosswords = Doctrine_Core::getTable('Crossword')->getPopularCrosswords($this->count);
+	}
+	
     /**
      * User crosswords list
      *  
@@ -44,7 +53,7 @@ class crosswordComponents extends sfComponents {
         }
     }
 
-    /**
+	/**
      *
      * @param sfWebRequest $request 
      */

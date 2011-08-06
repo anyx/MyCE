@@ -2,6 +2,10 @@
 <?= __('Construct crossword') ?> &laquo;<?= $crossword->getTitle(); ?>&raquo;
 <?php end_slot(); ?>
 
+<div class="top-link-container">
+	<?=link_to( 'Edit crossword data', 'crossword/edit?id=' . $crossword->getId() )?>
+</div>
+
 <p>
     <?= __('Just add type word, select diraction and drag him to the crossword area') ?>
 </p>
@@ -87,7 +91,7 @@
             wordLengthError       : "<?=__( 'Word\'s length is too short' )?>",
             definitionLengthError : "<?=__( 'Word\'s definition length is too short' )?>",
             infoMessage           : "<?=__( 'In this place you can see current constructor status' )?>",
-            saving                : "<?=__( 'Saving...' )?>",
+            saving                : "<?=__( 'Saving...' )?>"
         });
     <? end_slot()?>
 

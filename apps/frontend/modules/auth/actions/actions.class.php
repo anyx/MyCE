@@ -13,8 +13,9 @@ class authActions extends sfActions {
   protected $availableAuthServices = array(
   		'facebook',
   		'google',
-  		'twitter'
-  );
+  		'twitter',
+		'vkontakte'
+  );	
 
   public function preExecute() {
   	$this->availableServices = $this->availableAuthServices;
@@ -50,13 +51,17 @@ class authActions extends sfActions {
 	$service = $request->getParameter( 'service' );
 
     $user = $this->getUser()->getMelody( $service )->getMe();
-
+	
     switch ( $service ) {
     	case 'facebook'	: 
     		$userLink = $user->link;
     		break;
     	case 'twitter'	:
     		$userLink = 'http://twitter.com/#!/' . $user->screen_name;
+    		break;
+		case 'vkontakte' :
+			$userData = current( $user->response );
+    		$userLink = 'http://vk.com/id' . $userData->uid;
     		break;
     	default:
     		$userLink = '';
@@ -65,7 +70,7 @@ class authActions extends sfActions {
     $this->getUser()->setAttribute( 'auth_service' , $service );
     $this->getUser()->setAttribute( 'service_profile_link' , $userLink );
     
-  	$this->redirect( 'homepage' );
+	$this->redirect( 'homepage' );
   }
   
   /**

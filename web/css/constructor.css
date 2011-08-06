@@ -35,7 +35,8 @@
 .word-table TD {
     width: 18px;
     min-width: 18px;
-    height: 18px;
+    height: 19px;
+    min-height: 18px;
     line-height: 18px;
     text-align: center;
 }
@@ -176,7 +177,7 @@
 .radio-decorator .hover {
     background: #009de6;
 }
-.radio-decorator .selected {
+.radio-decorator .checked {
     background: #0067b0;
     color: #fff;
 }

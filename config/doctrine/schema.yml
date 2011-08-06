@@ -39,4 +39,12 @@ UserAnswer:
   relations:
     Crossword: { onDelete: CASCADE, local: crossword_id, foreign: id }
     sfGuardUser: { onDelete: CASCADE, local: user_id, foreign: id } 
-  
+    
+Page:
+  actAs: { Timestampable: ~ }
+  columns:
+    code: { type: string(255), notnull: true }
+    title: { type: string(4000), notnull: true }
+    meta: { type: string(4000), notnull: true }
+    description: { type: string(4000), notnull: true }
+    text: { type: string(4000), notnull: true }

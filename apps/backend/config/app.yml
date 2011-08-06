@@ -13,6 +13,10 @@ all:
             url:    crossword_category
           Words:
             url:    word
+      Content:
+        items:
+          Pages:
+            url: pages
       Users:
         items:
           sfGuardUser:

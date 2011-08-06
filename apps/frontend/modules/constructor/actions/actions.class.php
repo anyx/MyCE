@@ -53,7 +53,7 @@ class constructorActions extends sfActions {
                 $word = new Word;
             }
             
-            $word->setWord($item['word'])
+            $word->setWord($item['text'])
                     ->setDefinition($item['definition'])
                     ->setHorisontal($item['direction'] == 'horizontal')
                     ->setCrossword($crossword)
@@ -64,12 +64,12 @@ class constructorActions extends sfActions {
             $word->save();
                     
             $this->result_items[] = array(
-                'id' => $word->getId(),
-                'word' => $word->getWord(),
-                'direction' => $word->getHorisontal() ? 'horizontal' : 'vertical',
-                'definition' => $word->getDefinition(),
-                'x' => $word->getX(),
-                'y' => $word->getY()
+                'id'			=> $word->getId(),
+                'text'			=> $word->getWord(),
+                'direction'		=> $word->getHorisontal() ? 'horizontal' : 'vertical',
+                'definition'	=> $word->getDefinition(),
+                'x'				=> $word->getX(),
+                'y'				=> $word->getY()
             );
         }
     }

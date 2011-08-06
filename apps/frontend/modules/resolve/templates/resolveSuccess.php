@@ -96,7 +96,7 @@ foreach ( $word_items as $word_number => $word ) {
 		<?foreach ( $word_items as $number => $word_item ):?>
 		words[words.length] = new MappedWordItem(
 								{
-									length		: "<?=strlen( $word_item->getWord())?>",
+									length		: "<?=mb_strlen( $word_item->getWord())?>",
 									definition	: "<?=$word_item->getDefinition()?>",
 									id			: <?=$word_item->getId()?>
 								},
@@ -113,8 +113,8 @@ foreach ( $word_items as $word_number => $word ) {
 		crossword_resolver.showWords( words );
 
 		$('#save-button').click(function(){
-
-			$.post( '/frontend_dev.php/resolve/1/save', { answers : crossword_resolver.getAnswers() }, function( response ) {
+			
+			$.post( '/frontend_dev.php/resolve/'+ context.get( 'Page/Params/id' ) +'/save', { answers : crossword_resolver.getAnswers() }, function( response ) {
 				
 				if ( response.result ) {
 					messages_helper.showMessage( 'info', 'Save success' );

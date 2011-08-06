@@ -59,6 +59,10 @@ oauth_facebook:
   url: /auth/success/facebook
   param:   { module: auth, action: success, service: facebook }
 
+oauth_vkontakte:
+  url: /auth/success/vkontakte
+  param:   { module: auth, action: success, service: vkontakte }
+
 auth_oauth:
   url: /auth/:service
   param:   { module: auth, action: connect }
@@ -77,7 +81,10 @@ profile:
   url: /profile
   param:   { module: profile, action: index }
  
-
+page: 
+  url: /page/:page
+  param:   { module: pages, action: show }
+  
 # generic rules
 # please, remove them by adding more specific rules
 
